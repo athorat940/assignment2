@@ -1,35 +1,43 @@
-apiVersion: apps/v1
 kind: Deployment
+
+apiVersion: apps/v1
+
 metadata:
-  name: my-ACR-deployment
+
+  name: acr-app-deploy
+
+  namespace: default
+
   labels:
-    app: ACR-app
+
+    app: acr-app
+
 spec:
+
   replicas: 1
+
   selector:
+
     matchLabels:
-      app: ACR-app
+
+      app: acr-app
+
   template:
+
     metadata:
+
       labels:
-        app: ACR-app
+
+        app: acr-app
+
     spec:
+
       containers:
-        - name: my-ACR-app
-          image: acrregistry12.azurecr.io/my-ACR-app:$BUILD_NUMBER
-          ports:
-            - containerPort: 5000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ACR-app-service
-  labels:
-    app: ACR-app
-spec:
-  type: LoadBalancer
-  selector:
-    app: ACR-app
-  ports:
-    - port: 5000
-      targetPort: 5000
+
+      - name: acr-app
+
+        image: acrregistry12.azurecr.io/my-ACR-app:$BUILD_NUMBER
+
+        ports:
+
+          - containerPort: 3000
