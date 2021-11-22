@@ -1,43 +1,22 @@
 kind: Deployment
-
 apiVersion: apps/v1
-
 metadata:
-
   name: acr-app-deploy
-
   namespace: default
-
   labels:
-
     app: acr-app
-
 spec:
-
   replicas: 1
-
   selector:
-
     matchLabels:
-
       app: acr-app
-
   template:
-
     metadata:
-
       labels:
-
         app: acr-app
-
     spec:
-
       containers:
-
       - name: acr-app
-
         image: acrregistry12.azurecr.io/my-ACR-app:$BUILD_NUMBER
-
         ports:
-
-          - containerPort: 3000
+          - containerPort: 5000
