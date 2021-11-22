@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myacr-loadbalancer
-  labels: 
-    app: myacr
+  name: acr-app
+  namespace: default
 spec:
-  type: LoadBalancer 
   selector:
-    app: myacr
-  ports: 
-    - port: 80
-      targetPort: 80
+    app: acr-app
+  type: LoadBalancer
+  ports:
+  - name: http
+    targetPort: 3000
+    port: 80
