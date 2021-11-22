@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myacr-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myacr
+  template: 
+    metadata: # Dictionary
+      name: myacr-pod
+      labels: # Dictionary 
+        app: myacr       
+    spec:
+      containers: # List
+        - name: myacr-container
+          image: acrregistry12/acr-app
+          ports:
+            - containerPort: 80
